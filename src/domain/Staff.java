@@ -11,6 +11,7 @@ package domain;
  */
 public class Staff {
 
+    private int ID;
     private String name;
     private String phoneNo;
     private String address;
@@ -24,6 +25,14 @@ public class Staff {
         this.name = name;
         this.phoneNo = phoneNo;
         this.address = address;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
     public String getName() {
