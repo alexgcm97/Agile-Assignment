@@ -21,10 +21,12 @@ public class Staff {
         
     }
     
-    public Staff(String name, String phoneNo, String address){
+    public Staff(int ID, String name, String phoneNo, String address, String status){
+        this.ID = ID;
         this.name = name;
         this.phoneNo = phoneNo;
         this.address = address;
+        this.status = status;
     }
 
     public int getID() {
