@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author REPUBLIC
  */
 public class orderDetails {
+
     private int staffID;
     private int orderID;
     private int resID;
@@ -21,23 +22,28 @@ public class orderDetails {
     private String custNo;
     private ArrayList food;
 
- 
+    public orderDetails() {
 
-    public orderDetails(){
-        
     }
-    public orderDetails(int staffID,int orderID, int resID,String resName, String customerName, String customerAdd, String custNo,ArrayList food) {
-       
-        this.staffID=staffID;
+
+    public orderDetails(int staffID, int orderID, int resID, String resName, String customerName, String customerAdd, String custNo, ArrayList food) {
+
+        this.staffID = staffID;
         this.orderID = orderID;
         this.resID = resID;
-        this.resName=resName;
+        this.resName = resName;
         this.customerName = customerName;
         this.customerAdd = customerAdd;
         this.custNo = custNo;
-        this.food=food;
+        this.food = food;
     }
-       public ArrayList getFood() {
+
+    public orderDetails(int resID, String resName) {
+        this.resID = resID;
+        this.resName = resName;
+    }
+
+    public ArrayList getFood() {
         return food;
     }
 
@@ -101,7 +107,4 @@ public class orderDetails {
         this.custNo = custNo;
     }
 
-
-    
 }
-

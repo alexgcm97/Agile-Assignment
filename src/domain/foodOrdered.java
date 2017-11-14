@@ -11,11 +11,19 @@ package domain;
  */
 public class foodOrdered {
     private int orderID;
+    private int foodID;
     private String food;
     private int quantity;
 
     public foodOrdered(){
         
+    }
+        
+    public foodOrdered(int orderID, int foodID, String food, int quantity) {
+        this.orderID = orderID;
+        this.foodID = foodID;
+        this.food = food;
+        this.quantity = quantity;
     }
     
     public foodOrdered(int orderID, String food, int quantity) {
@@ -23,11 +31,19 @@ public class foodOrdered {
         this.food = food;
         this.quantity = quantity;
     }
-
+   
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
+    public int getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(int foodID) {
+        this.foodID = foodID;
+    }
+    
     public void setFood(String food) {
         this.food = food;
     }
@@ -47,6 +63,6 @@ public class foodOrdered {
     public int getQuantity() {
         return quantity;
     }
-    
+   
     
 }
