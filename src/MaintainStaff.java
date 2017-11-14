@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class MaintainStaff {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final List<Staff> staffList = new ArrayList<Staff>();
+    private static final ArrayList<Staff> staffList = new ArrayList<Staff>();
     private static int ID = 1001;
 
     /**
@@ -46,20 +46,20 @@ public class MaintainStaff {
             Staff newStaff = new Staff();
             newStaff.setID(ID);
 
-            System.out.println("***Staff Registration***\n");
+            System.out.println("\n\n\n***Staff Registration***\n");
             System.out.println("===Input Details===");
             System.out.println("Staff ID : " + newStaff.getID());
             System.out.print("Name : ");
-            newStaff.setName(scanner.next());
+            newStaff.setName(scanner.nextLine());
             System.out.print("Phone Number : ");
-            newStaff.setPhoneNo(scanner.next());
+            newStaff.setPhoneNo(scanner.nextLine());
             System.out.print("Address : ");
-            newStaff.setAddress(scanner.next());
+            newStaff.setAddress(scanner.nextLine());
             newStaff.setStatus("Active");
 
             do {
                 System.out.print("Verify Input Details (Y/N/Exit) ?  ");
-                input = scanner.next();
+                input = scanner.nextLine();
                 if (compareInput(input) == 1) {
                     System.out.println("\n===Verify Staff Details===");
                     System.out.println("Staff ID : " + newStaff.getID());
@@ -76,14 +76,13 @@ public class MaintainStaff {
 
             do {
                 System.out.print("Confirm add into system (Y/N/Exit) ? ");
-                input = scanner.next();
+                input = scanner.nextLine();
                 if (compareInput(input) == 1) {
                     staffList.add(newStaff);
                     ID++;
                     break;
                 } else if (compareInput(input) == -1) {
                     System.out.println("Invalid Input");
-                    break;
                 } else if (compareInput(input) == -999) {
                     break OUTER;
                 }
@@ -91,10 +90,9 @@ public class MaintainStaff {
 
             do {
                 System.out.print("Add more staff (Y/N) ? ");
-                input = scanner.next();
+                input = scanner.nextLine();
                 if (compareInput(input) == 1) {
                     doMore = true;
-                    System.out.println("\n\n\n\n");
                     break;
                 } else if (compareInput(input) == -1) {
                     System.out.println("Invalid Input");
@@ -104,7 +102,7 @@ public class MaintainStaff {
 
         do {
             System.out.print("Return to Main Menu or Exit (Y = Return / N = Exit) ? ");
-            input = scanner.next();
+            input = scanner.nextLine();
             if (compareInput(input) == 0) {
                 System.exit(0);
             } else if (compareInput(input) == -1) {
@@ -142,6 +140,7 @@ public class MaintainStaff {
             System.out.println("0. Exit");
             System.out.print("Input Selection : ");
             input = scanner.nextInt();
+            scanner.nextLine();
             switch (input) {
                 case 0:
                     break;
