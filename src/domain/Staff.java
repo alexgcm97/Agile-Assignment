@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alex
@@ -16,17 +18,19 @@ public class Staff {
     private String phoneNo;
     private String address;
     private String status;
+    private ArrayList<orderDetails> deliveryList;
 
-    public Staff(){
-        
+    public Staff() {
+
     }
-    
-    public Staff(int ID, String name, String phoneNo, String address, String status){
+
+    public Staff(int ID, String name, String phoneNo, String address, String status) {
         this.ID = ID;
         this.name = name;
         this.phoneNo = phoneNo;
         this.address = address;
         this.status = status;
+        this.deliveryList = new ArrayList<orderDetails>();
     }
 
     public int getID() {
@@ -36,7 +40,7 @@ public class Staff {
     public void setID(int ID) {
         this.ID = ID;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -67,5 +71,17 @@ public class Staff {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void addDelivery(orderDetails od) {
+        deliveryList.add(od);
+    }
+
+    public void setDeliveryList(ArrayList<orderDetails> deliveryList) {
+        this.deliveryList = deliveryList;
+    }
+
+    public ArrayList<orderDetails> getDeliveryList() {
+        return deliveryList;
     }
 }

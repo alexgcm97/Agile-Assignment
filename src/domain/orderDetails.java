@@ -21,6 +21,7 @@ public class orderDetails {
     private String customerAdd;
     private String custNo;
     private ArrayList food;
+    private String status;
 
     public orderDetails() {
 
@@ -36,6 +37,7 @@ public class orderDetails {
         this.customerAdd = customerAdd;
         this.custNo = custNo;
         this.food = food;
+        this.status = "Pending";
     }
 
     public orderDetails(int resID, String resName) {
@@ -107,4 +109,11 @@ public class orderDetails {
         this.custNo = custNo;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
