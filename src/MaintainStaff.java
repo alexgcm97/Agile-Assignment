@@ -22,6 +22,7 @@ public class MaintainStaff {
     private static final ArrayList<Staff> staffList = new ArrayList<Staff>();
     private static int ID = 1002;
     private static orderDetails orderDetail;
+    private static final ArrayList<orderDetails> orderList = new ArrayList<orderDetails>();
 
     public static int compareInput(String input) {
         if (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("ye") || input.equalsIgnoreCase("yes")) {
@@ -148,7 +149,7 @@ public class MaintainStaff {
                 System.out.print("Order ID: ");
 
                 if (deliveryList.isEmpty()) {
-                    System.out.println("Delivery List is empty.");
+                    System.out.println("Delivery list is empty.");
                 } else {
                     for (orderDetails od : deliveryList) {
                         System.out.print(od.getOrderID() + " ");
@@ -169,22 +170,35 @@ public class MaintainStaff {
                     case 0:
                         break OUTER;
                     case 1: {
-                        System.out.print("Input Order ID: ");
-                        input = scanner.nextInt();
-                        scanner.nextLine();
+                        if (!orderList.isEmpty()) {
+                            System.out.print("Current Available Orders ID: ");
+                            for (orderDetails od : orderList) {
+                                System.out.print(od.getOrderID() + " ");
+                            }
+                            System.out.println("");
+                            System.out.print("Input Order ID: ");
+                            input = scanner.nextInt();
+                            scanner.nextLine();
 
-                        if (input == orderDetail.getOrderID()) {
-                            if (orderDetail.getStatus().equals("Pending") && !staff.getDeliveryList().contains(orderDetail)) {
-                                orderDetail.setStatus("Delivering");
-                                staff.addDelivery(orderDetail);
-                            } else {
-                                System.out.println("Order already assigned.");
+                            for (orderDetails od : orderList) {
+                                if (input == od.getOrderID()) {
+                                    if (!staff.getDeliveryList().contains(od)) {
+                                        staff.addDelivery(od);
+                                        orderList.remove(od);
+                                    } else {
+                                        System.out.println("Order already assigned.");
+                                    }
+                                    break;
+                                } else {
+                                    System.out.println("Invalid Order ID");
+                                    break;
+                                }
                             }
                             break;
-                        } else {
-                            System.out.println("Invalid Order ID");
+                        } else{
+                            System.out.println("Order list is empty.");
+                            break;
                         }
-                        break;
                     }
                     case 2: {
                         if (!deliveryList.isEmpty()) {
@@ -347,11 +361,15 @@ public class MaintainStaff {
         orderDetail = new orderDetails(1001, 2001, 3001, "Kopitiam", "Jordan", "Taman Gembira", "012-3456789", fo);
         staffList.get(0).addDelivery(orderDetail);
 
-        fo = new ArrayList<foodOrdered>();
+        fo = new ArrayList<>();
         fo.add(new foodOrdered(2002, "Roti bakar", 2));
         fo.add(new foodOrdered(2002, "Telur", 2));
         fo.add(new foodOrdered(2002, "Milo Ais", 2));
-        orderDetail = new orderDetails(1001, 2002, 3002, "Garden Cafe", "John", "Taman ABC", "0123456789(3)", fo);
+        orderList.add(new orderDetails(1001, 2002, 3002, "Garden Cafe", "John", "Taman ABC", "0123456789(3)", fo));
+        fo = new ArrayList<>();
+        fo.add(new foodOrdered(2003, "Mee Rebus", 2));
+        fo.add(new foodOrdered(2003, "Teh Ais", 1));
+        orderList.add(new orderDetails(1002, 2003, 3002, "Garden Cafe", "Dennis", "Taman DEF", "012-333444999", fo));
 
         int input;
         do {
