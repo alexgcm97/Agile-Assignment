@@ -21,15 +21,15 @@ public class CheckOrder {
         ArrayList<foodOrdered> fo = new ArrayList<foodOrdered>();
         ArrayList<foodOrdered> fo1 = new ArrayList<foodOrdered>();
         ArrayList<foodOrdered> fo2 = new ArrayList<foodOrdered>();
-        foodOrdered foodDetail = new foodOrdered(2001, "Nasi lemak", 1);
-        foodOrdered foodDetail1 = new foodOrdered(2001, "Burger", 1);
-        foodOrdered foodDetail2 = new foodOrdered(2001, "Kopi ice", 1);
-        foodOrdered foodDetail3 = new foodOrdered(2002, "Roti bakar", 2);
-        foodOrdered foodDetail4 = new foodOrdered(2002, "Telur", 2);
-        foodOrdered foodDetail5 = new foodOrdered(2002, "Milo ais", 2);
-        foodOrdered foodDetail6 = new foodOrdered(2002, "Roti telur", 3);
-        foodOrdered foodDetail7 = new foodOrdered(2002, "Telur", 3);
-        foodOrdered foodDetail8 = new foodOrdered(2002, "Limau ais", 3);
+        foodOrdered foodDetail = new foodOrdered(2001, "Nasi lemak", 1,0.0);
+        foodOrdered foodDetail1 = new foodOrdered(2001, "Burger", 1,0.0);
+        foodOrdered foodDetail2 = new foodOrdered(2001, "Kopi ice", 1,0.0);
+        foodOrdered foodDetail3 = new foodOrdered(2002, "Roti bakar", 2,0.0);
+        foodOrdered foodDetail4 = new foodOrdered(2002, "Telur", 2,0.0);
+        foodOrdered foodDetail5 = new foodOrdered(2002, "Milo ais", 2,0.0);
+        foodOrdered foodDetail6 = new foodOrdered(2002, "Roti telur", 3,0.0);
+        foodOrdered foodDetail7 = new foodOrdered(2002, "Telur", 3,0.0);
+        foodOrdered foodDetail8 = new foodOrdered(2002, "Limau ais", 3,0.0);
 
         fo.add(foodDetail);
         fo.add(foodDetail1);

@@ -14,22 +14,25 @@ public class foodOrdered {
     private int foodID;
     private String food;
     private int quantity;
+    private double price;
 
     public foodOrdered(){
         
     }
         
-    public foodOrdered(int orderID, int foodID, String food, int quantity) {
+    public foodOrdered(int orderID, int foodID, String food, int quantity, double price) {
         this.orderID = orderID;
         this.foodID = foodID;
         this.food = food;
         this.quantity = quantity;
+        this.price = price;
     }
     
-    public foodOrdered(int orderID, String food, int quantity) {
+    public foodOrdered(int orderID, String food, int quantity, double price) {
         this.orderID = orderID;
         this.food = food;
         this.quantity = quantity;
+        this.price = price;
     }
    
     public void setOrderID(int orderID) {
@@ -62,6 +65,14 @@ public class foodOrdered {
 
     public int getQuantity() {
         return quantity;
+    }
+    
+    public void setPrie(double price){
+        this.price = price;
+    }
+    
+    public double getPrice(){
+        return price;
     }
    
     

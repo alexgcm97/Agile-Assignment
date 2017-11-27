@@ -355,20 +355,20 @@ public class MaintainStaff {
         staffList.add(new Staff(1001, "Alex", "012-3456789", "123, Jalan ABC", "Active"));
 
         ArrayList<foodOrdered> fo = new ArrayList<foodOrdered>();
-        fo.add(new foodOrdered(2001, "Nasi lemak", 1));
-        fo.add(new foodOrdered(2001, "Burger", 1));
-        fo.add(new foodOrdered(2001, "Kopi ice", 1));
+        fo.add(new foodOrdered(2001, "Nasi lemak", 1, 0.0));
+        fo.add(new foodOrdered(2001, "Burger", 1, 0.0));
+        fo.add(new foodOrdered(2001, "Kopi ice", 1, 0.0));
         orderDetail = new orderDetails(1001, 2001, 3001, "Kopitiam", "Jordan", "Taman Gembira", "012-3456789", fo);
         staffList.get(0).addDelivery(orderDetail);
 
         fo = new ArrayList<>();
-        fo.add(new foodOrdered(2002, "Roti bakar", 2));
-        fo.add(new foodOrdered(2002, "Telur", 2));
-        fo.add(new foodOrdered(2002, "Milo Ais", 2));
+        fo.add(new foodOrdered(2002, "Roti bakar", 2, 0.0));
+        fo.add(new foodOrdered(2002, "Telur", 2, 0.0));
+        fo.add(new foodOrdered(2002, "Milo Ais", 2, 0.0));
         orderList.add(new orderDetails(1001, 2002, 3002, "Garden Cafe", "John", "Taman ABC", "0123456789(3)", fo));
         fo = new ArrayList<>();
-        fo.add(new foodOrdered(2003, "Mee Rebus", 2));
-        fo.add(new foodOrdered(2003, "Teh Ais", 1));
+        fo.add(new foodOrdered(2003, "Mee Rebus", 2, 0.0));
+        fo.add(new foodOrdered(2003, "Teh Ais", 1, 0.0));
         orderList.add(new orderDetails(1002, 2003, 3002, "Garden Cafe", "Dennis", "Taman DEF", "012-333444999", fo));
 
         int input;
