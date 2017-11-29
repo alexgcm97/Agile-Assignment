@@ -19,10 +19,48 @@ public class Staff {
     private String address;
     private String status;
     private ArrayList<orderDetails> deliveryList;
+    private String checkIn;
+    private String checkOut;
+    private String availability;
 
     public Staff() {
 
     }
+
+       public Staff(int ID, String name, String availability) {
+        this.ID = ID;
+        this.name = name;
+        this.availability=availability;
+
+    }
+
+    public String getAvailability() {
+        return this.availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+
+
+    public String getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    
 
     public Staff(int ID, String name, String phoneNo, String address, String status) {
         this.ID = ID;
@@ -32,6 +70,8 @@ public class Staff {
         this.status = status;
         this.deliveryList = new ArrayList<orderDetails>();
     }
+
+
 
     public int getID() {
         return ID;
