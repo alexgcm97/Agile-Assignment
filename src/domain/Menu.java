@@ -14,10 +14,30 @@ public class Menu {
     int foodId;
     String food;
     double price;
+    String foodDesc;
+    String stock;
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
+    public String getFoodDesc() {
+        return foodDesc;
+    }
+
+    public void setFoodDesc(String foodDesc) {
+        this.foodDesc = foodDesc;
+    }
 
     public Menu() {
 
     }
+  
+    
 
     public Menu(int resId, int foodId, String food, double price) {
         this.resId = resId;
@@ -25,6 +45,15 @@ public class Menu {
         this.food = food;
         this.price = price;
     }
+    
+    public Menu(int foodId, String food,String foodDesc, double price,String stock){
+        this.foodId = foodId;
+        this.food = food;
+        this.foodDesc = foodDesc;
+        this.price = price;
+        this.stock = stock;
+    }
+    
 
     public void setFood(String food) {
         this.food = food;

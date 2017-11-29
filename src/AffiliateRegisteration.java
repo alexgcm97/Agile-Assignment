@@ -1,5 +1,7 @@
 
 import domain.Affiliate;
+import domain.Menu;
+import static java.lang.Integer.parseInt;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,7 +24,202 @@ import java.util.Scanner;
 public class AffiliateRegisteration {
 
     public static String currentDate ;
+    public static Scanner scan = new Scanner(System.in);
+    private static  List<Menu> menuList = new ArrayList<Menu>();
+    private final static Menu Menus = new Menu();
     
+    
+    
+    
+     public static void showMenu(){
+     
+         System.out.println("--Food Menu--");
+         System.out.println("--------------------------------------------------------------------------");
+         System.out.println("|No.|  Food Name  |         Description             |Price |Availability|");
+         System.out.println("--------------------------------------------------------------------------");
+         for(int i=0; i<menuList.size();i++){
+             System.out.println("|"+ (i+1) +". |"+menuList.get(i).getFood()+
+                     "|"+menuList.get(i).getFoodDesc()+
+                     "|RM"+menuList.get(i).getPrice()+
+                     " | "+menuList.get(i).getStock()+" |");
+             
+         }
+         
+         System.out.println("---------------------------");
+         
+         
+    }
+    public static void addNewMenuItem(){
+        String again;
+        boolean ToF ;
+        String newFoodName;
+        String foodPrice;
+        String YoN;
+        
+        showMenu();
+       do{
+            System.out.println("***Insert New Menu Item****");
+            System.out.println("---------------------------");
+
+            System.out.println("Food ID  : "+(menuList.size()+1));
+            Menus.setFoodId(menuList.size()+1);
+
+            do{
+                System.out.print("Food Name: ");
+                ToF = false;
+                newFoodName = scan.nextLine();
+                if(newFoodName.matches(".*\\d.*")){
+                    System.out.println("Input contains Integer or Symbol.Please Re-enter.");
+                }
+                else{
+                    Menus.setFood(newFoodName);
+                    break;
+                }
+            }while(ToF == false);
+
+            System.out.print("Food Description: ");
+            Menus.setFoodDesc(scan.nextLine());
+
+            do{
+                System.out.print("Price: ");
+                ToF = false;
+                foodPrice = scan.nextLine();
+                if(!foodPrice.matches(".*\\d.*")){
+                    System.out.println("Input contains Character or Symbol. Please Re-enter.");
+                }
+                else{
+                    Menus.setPrice(Double.parseDouble(foodPrice));
+                    break;
+                }
+
+            }while(ToF == false);
+            
+            do{
+                 System.out.println("Set Availability? Y/N");
+                 YoN = scan.next();
+                 if(YoN.equalsIgnoreCase("Y")){
+                     Menus.setStock("Available");
+                     break;
+                 }else if(YoN.equalsIgnoreCase("N")){
+                     Menus.setStock("Not Available");
+                     break;
+                 }else{
+                     System.out.println("Error Input, Please Enter Y or N only");
+                     ToF = false;
+                 }
+            }while(ToF == false);
+           
+      
+            menuList.add(new Menu(Menus.getFoodId(),Menus.getFood(),Menus.getFoodDesc(),Menus.getPrice(),Menus.getStock()));
+
+            System.out.println("\n\n***Updated Menu****");
+            showMenu();
+           
+            do{
+                System.out.println("Do you wish to add more new item? Y/N");
+                again = scan.nextLine();
+                if(again.equalsIgnoreCase("y")){
+                    ToF = true;
+                    break;
+                }else if(again.equalsIgnoreCase("n")){
+                    ToF = false;
+                    break;
+                }else
+                    System.out.println("Error input. Please Re-enter.");
+                    ToF = false;
+            }while(ToF == false);
+       }while(ToF == true);
+
+    }
+    
+      
+    public static void updateMenuItem(){
+        int selection;
+        boolean ToF;
+        String foodPrice;
+        String YoN;
+        String updateMenu;
+        
+        
+       
+        showMenu();
+        System.out.println("\n\n***Update Menu Item****");
+        System.out.println("---------------------------");
+        do{
+            ToF = false;
+            System.out.printf("Item Number want to update :");
+            selection = scan.nextInt();
+            if(selection > menuList.size()){
+                System.out.println("\n\n------------------------------------------------");
+               System.out.println("Invalid Selection. Please re-enter.");
+               ToF = false;
+            }
+            else
+                ToF = true;
+                selection--;
+        }while(ToF == false);
+       
+        scan.nextLine();
+        System.out.println("------------------------------------------------");
+        System.out.println("Food ID : "+menuList.get(selection).getFoodId());
+        System.out.println("Food Name: "+menuList.get(selection).getFood());
+        System.out.println("*** Food ID and Food Name can't be changed!! ***");
+        
+        System.out.println("\n\n------------------------------------------------");
+        System.out.println("Description From: "+menuList.get(selection).getFoodDesc());
+        System.out.printf("To :");
+        Menus.setFoodDesc(scan.nextLine());
+        
+        
+        do{
+            
+            ToF = false;
+            System.out.println("\n\n------------------------------------------------");
+            System.out.println("Price From: RM"+menuList.get(selection).getPrice());
+            System.out.printf("To : RM");
+            foodPrice = scan.nextLine();
+            if(!foodPrice.matches(".*\\d.*")){
+                
+                System.out.println("Input contains Character or Symbol. Please Re-enter.");
+            }
+            else{
+                Menus.setPrice(Double.parseDouble(foodPrice));
+                break;
+            }
+        }while(ToF == false);
+        
+        do{
+            System.out.println("\n\n------------------------------------------------");
+            System.out.println("Availability :"+menuList.get(selection).getStock());
+            System.out.println("Set Availability? Y/N");
+            YoN = scan.next();
+                if(YoN.equalsIgnoreCase("Y")){
+                    Menus.setStock("Yes");
+                    break;
+                }else if(YoN.equalsIgnoreCase("N")){
+                    Menus.setStock("No");
+                    break;
+                }else{
+                    System.out.println("Error Input, Please Enter Y or N only");
+                    ToF = false;
+                }
+        }while(ToF == false);
+        
+        Menus.setFoodId(menuList.get(selection).getFoodId());
+        Menus.setFood(menuList.get(selection).getFood());
+        updateMenu = Menus.getFoodId()+Menus.getFood()+Menus.getFoodDesc()+Menus.getPrice()+Menus.getStock();
+        System.out.println(updateMenu);
+        System.out.println(selection);
+        
+        menuList.remove(selection);
+        menuList.add(selection, Menus);
+        
+        showMenu();
+        
+        
+        
+        
+    }
     public static void getDate(){
         
         GregorianCalendar date = new GregorianCalendar();      
@@ -71,16 +268,12 @@ public class AffiliateRegisteration {
         
     }
   
-    public static void registerAffialiate(){
-        
-    }
-    public static void main(String[] args) {
     
-        
-        List<Affiliate> Affialiates = new ArrayList<Affiliate>();
+    public static void registerAffialiate(){
+         List<Affiliate> Affialiates = new ArrayList<Affiliate>();
         boolean ToF; 
         String tryAgain ;
-        Scanner scan = new Scanner(System.in);
+       
         Affiliate regAffiliate = new Affiliate();
         getDate();
         
@@ -181,6 +374,48 @@ public class AffiliateRegisteration {
             }while(!tryAgain.equalsIgnoreCase("n") && !tryAgain.equalsIgnoreCase("y"));
         }while(tryAgain.equalsIgnoreCase("n"));
         Affialiates.add(regAffiliate);
+        
+    }
+   
+  
+    public static void main(String[] args) {
+        menuList.add(new Menu(1,"Roti Canai.  ","Plain Paratha Bread              ",1.00,"Yes       "));
+         menuList.add(new Menu(2,"Roti Bawang. ","Paratha Bread cooked with onion  ",1.50,"No        "));
+         menuList.add(new Menu(3,"Roti Telur.  ","Paratha Bread cooked with egg    ",1.70,"No        "));
+         menuList.add(new Menu(4,"Roti Planta. ","Paratha Bread cooked with planta ",2.00,"Yes       "));
+         
+         int selection;
+         boolean YoN = false;
+         
+        System.out.println("--List of Function--");
+        System.out.println("----------------------------");
+        System.out.println("1.Register As An Affiliates");
+        System.out.println("2.Add New Menu Items");
+        System.out.println("3.Update Menu Items");
+        System.out.println("0.Exit");
+        System.out.println("---------------------------");
+      
+       
+        do{
+            System.out.print("Enter your Selection :");
+            selection = scan.nextInt();
+            if(selection>0 && selection<4){
+                switch(selection){
+                    case 1: 
+                        registerAffialiate();
+                    case 2:
+                        addNewMenuItem();
+                    case 3:
+                        updateMenuItem();
+                    case 0:
+                        break;
+                }
+            }else{
+                YoN = false;
+                System.out.println("Error Input, Please enter 1 , 2 ,3 or 0 only.");
+            }
+        }while(YoN == false);
+       
     }
     
 }
