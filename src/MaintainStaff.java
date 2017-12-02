@@ -4,7 +4,6 @@ import domain.foodOrdered;
 import domain.orderDetails;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -146,7 +145,7 @@ public class MaintainStaff {
 
                 System.out.println("\n\n\n\n==Pending Deliveries==");
                 System.out.println("Staff Name(ID): " + staff.getName() + "(" + staff.getID() + ")");
-                System.out.print("Order ID: ");
+                System.out.print("Order IDs: ");
 
                 if (deliveryList.isEmpty()) {
                     System.out.println("Delivery list is empty.");
@@ -171,12 +170,12 @@ public class MaintainStaff {
                         break OUTER;
                     case 1: {
                         if (!orderList.isEmpty()) {
-                            System.out.print("Current Available Orders ID: ");
+                            System.out.print("Current Available Order IDs: ");
                             for (orderDetails od : orderList) {
                                 System.out.print(od.getOrderID() + " ");
                             }
                             System.out.println("");
-                            System.out.print("Input Order ID: ");
+                            System.out.print("Input New Order ID: ");
                             input = scanner.nextInt();
                             scanner.nextLine();
 
@@ -195,7 +194,7 @@ public class MaintainStaff {
                                 }
                             }
                             break;
-                        } else{
+                        } else {
                             System.out.println("Order list is empty.");
                             break;
                         }
@@ -243,7 +242,7 @@ public class MaintainStaff {
         String strInput = null;
         String temp = null;
 
-        System.out.println("**Update Staff Information**");
+        System.out.println("\n\n\n\n**Update Staff Information**");
         OUTER:
         do {
             do {
@@ -281,43 +280,151 @@ public class MaintainStaff {
                         System.out.println("Current Name: " + staff.getName());
                         System.out.print("Input New Name: ");
                         temp = scanner.nextLine();
-                        do {
-                            System.out.print("Confirm update (Y/N) ? ");
-                            strInput = scanner.nextLine();
-                            if (compareInput(strInput) == 1) {
-                                staff.setName(temp);
-                                break;
-                            } else {
-                                System.out.println("Invalid Input");
-                            }
-                        } while (compareInput(strInput) != 0);
+                        if (!temp.equals("")) {
+                            do {
+                                System.out.print("Confirm update (Y/N) ? ");
+                                strInput = scanner.nextLine();
+                                if (compareInput(strInput) == 1) {
+                                    staff.setName(temp);
+                                    break;
+                                } else {
+                                    System.out.println("Invalid Input");
+                                }
+                            } while (compareInput(strInput) != 0);
+                        } else {
+                            System.out.println("Name cannot be empty.");
+                        }
                         break;
                     }
                     case 2: {
                         System.out.println("Current Phone Number: " + staff.getPhoneNo());
                         System.out.print("Input New Phone Number: ");
                         temp = scanner.nextLine();
-                        do {
-                            System.out.print("Confirm update (Y/N) ? ");
-                            strInput = scanner.nextLine();
-                            if (compareInput(strInput) == 1) {
-                                staff.setPhoneNo(temp);
-                                break;
-                            } else {
-                                System.out.println("Invalid Input");
-                            }
-                        } while (compareInput(strInput) != 0);
+                        if (!temp.equals("")) {
+                            do {
+                                System.out.print("Confirm update (Y/N) ? ");
+                                strInput = scanner.nextLine();
+                                if (compareInput(strInput) == 1) {
+                                    staff.setPhoneNo(temp);
+                                    break;
+                                } else {
+                                    System.out.println("Invalid Input");
+                                }
+                            } while (compareInput(strInput) != 0);
+                        } else {
+                            System.out.println("Phone number cannot be empty.");
+                        }
                         break;
                     }
                     case 3: {
                         System.out.println("Current Address: " + staff.getAddress());
                         System.out.print("Input New Address: ");
                         temp = scanner.nextLine();
+                        if (!temp.equals("")) {
+                            do {
+                                System.out.print("Confirm update (Y/N) ? ");
+                                strInput = scanner.nextLine();
+                                if (compareInput(strInput) == 1) {
+                                    staff.setAddress(temp);
+                                    break;
+                                } else {
+                                    System.out.println("Invalid Input");
+                                }
+                            } while (compareInput(strInput) != 0);
+                        } else {
+                            System.out.println("Phone number cannot be empty.");
+                        }
+                        break;
+                    }
+                    default: {
+                        System.out.println("Invalid Selection");
+                    }
+                }
+
+            } while (input != 0);
+        } while (input
+                != -1);
+
+        do {
+            System.out.print("Return to Main Menu or Exit (Y = Return / N = Exit) ? ");
+            strInput = scanner.nextLine();
+            if (compareInput(strInput) == 0) {
+                System.exit(0);
+            } else if (compareInput(strInput) == -1) {
+                System.out.println("Invalid Input");
+            }
+        } while (compareInput(strInput)
+                != 1);
+    }
+
+    public static void updateStatus() {
+        Staff staff = null;
+        int input = 0;
+        String strInput = null;
+
+        ArrayList<String> statusList = new ArrayList<>();
+        statusList.add("Active");
+        statusList.add("Inactive");
+        statusList.add("Resigned");
+        statusList.add("Retired");
+
+        System.out.println("\n\n\n\n**Update Staff Status**");
+        OUTER:
+        do {
+            do {
+                System.out.print("Input Staff ID (-1 to exit): ");
+                input = scanner.nextInt();
+                scanner.nextLine();
+                if (input == -1) {
+                    break OUTER;
+                }
+
+                for (Staff s : staffList) {
+                    if (s.getID() == input) {
+                        staff = s;
+                    }
+                }
+                if (staff == null) {
+                    System.out.println("Staff ID Not Found.");
+                }
+            } while (staff == null);
+
+            do {
+                int numb = 1;
+                System.out.println("\n\n\n==Staff Information==");
+                System.out.println("Staff Name(ID) : " + staff.getName() + "(" + staff.getID() + ")");
+                System.out.println("Current Status : " + staff.getStatus());
+                System.out.println("\nSet New Status:");
+                for (int i = 0; i < statusList.size(); i++) {
+                    if (!staff.getStatus().equalsIgnoreCase(statusList.get(i))) {
+                        System.out.println(numb + ". " + statusList.get(i));
+                        numb++;
+                    }
+                }
+                System.out.println("0. Exit");
+                do {
+                    System.out.print("Input Selection: ");
+                    input = scanner.nextInt();
+                    scanner.nextLine();
+                    if (input == 0) {
+                        break OUTER;
+                    } else if(input <1 || input > 3){
+                        System.out.println("Invalid Selection");
+                    }
+                } while (input < 1 || input > 3);
+                switch (staff.getStatus()) {
+                    case "Active": {
                         do {
                             System.out.print("Confirm update (Y/N) ? ");
                             strInput = scanner.nextLine();
                             if (compareInput(strInput) == 1) {
-                                staff.setPhoneNo(temp);
+                                if (input == 1) {
+                                    staff.setStatus("Inactive");
+                                } else if (input == 2) {
+                                    staff.setStatus("Resigned");
+                                } else if (input == 3) {
+                                    staff.setStatus("Retired");
+                                }
                                 break;
                             } else {
                                 System.out.println("Invalid Input");
@@ -325,12 +432,67 @@ public class MaintainStaff {
                         } while (compareInput(strInput) != 0);
                         break;
                     }
-                    default: {
-                        System.out.println("Invalid Selection");
+                    case "Inactive": {
+                        do {
+                            System.out.print("Confirm update (Y/N) ? ");
+                            strInput = scanner.nextLine();
+                            if (compareInput(strInput) == 1) {
+                                if (input == 1) {
+                                    staff.setStatus("Active");
+                                } else if (input == 2) {
+                                    staff.setStatus("Resigned");
+                                } else if (input == 3) {
+                                    staff.setStatus("Retired");
+                                }
+                                break;
+                            } else {
+                                System.out.println("Invalid Input");
+                            }
+                        } while (compareInput(strInput) != 0);
+                        break;
+                    }
+                    case "Resigned": {
+                        do {
+                            System.out.print("Confirm update (Y/N) ? ");
+                            strInput = scanner.nextLine();
+                            if (compareInput(strInput) == 1) {
+                                if (input == 1) {
+                                    staff.setStatus("Active");
+                                } else if (input == 2) {
+                                    staff.setStatus("Inactive");
+                                } else if (input == 3) {
+                                    staff.setStatus("Retired");
+                                }
+                                break;
+                            } else {
+                                System.out.println("Invalid Input");
+                            }
+                        } while (compareInput(strInput) != 0);
+                        break;
+                    }
+                    case "Retired": {
+                        do {
+                            System.out.print("Confirm update (Y/N) ? ");
+                            strInput = scanner.nextLine();
+                            if (compareInput(strInput) == 1) {
+                                if (input == 1) {
+                                    staff.setStatus("Active");
+                                } else if (input == 2) {
+                                    staff.setStatus("Inactive");
+                                } else if (input == 3) {
+                                    staff.setStatus("Resigned");
+                                }
+                                break;
+                            } else {
+                                System.out.println("Invalid Input");
+                            }
+                        } while (compareInput(strInput) != 0);
+                        break;
                     }
                 }
             } while (input != 0);
         } while (input != -1);
+
         do {
             System.out.print("Return to Main Menu or Exit (Y = Return / N = Exit) ? ");
             strInput = scanner.nextLine();
@@ -342,33 +504,25 @@ public class MaintainStaff {
         } while (compareInput(strInput) != 1);
     }
 
-    public static void updateStatus() {
-
-    }
-
-    public static void dailyReport() {
-
-    }
-
     public static void main(String[] args) throws IOException {
         //Intialize ArrayLists
         staffList.add(new Staff(1001, "Alex", "012-3456789", "123, Jalan ABC", "Active"));
 
         ArrayList<foodOrdered> fo = new ArrayList<foodOrdered>();
-        fo.add(new foodOrdered(2001, "Nasi lemak", 1, 0.0));
-        fo.add(new foodOrdered(2001, "Burger", 1, 0.0));
-        fo.add(new foodOrdered(2001, "Kopi ice", 1, 0.0));
+        fo.add(new foodOrdered(2001, "Nasi lemak", 1, 5.00));
+        fo.add(new foodOrdered(2001, "Burger", 1, 5.00));
+        fo.add(new foodOrdered(2001, "Kopi ice", 1, 2.00));
         orderDetail = new orderDetails(1001, 2001, 3001, "Kopitiam", "Jordan", "Taman Gembira", "012-3456789", fo);
         staffList.get(0).addDelivery(orderDetail);
 
         fo = new ArrayList<>();
-        fo.add(new foodOrdered(2002, "Roti bakar", 2, 0.0));
-        fo.add(new foodOrdered(2002, "Telur", 2, 0.0));
-        fo.add(new foodOrdered(2002, "Milo Ais", 2, 0.0));
+        fo.add(new foodOrdered(2002, "Roti bakar", 2, 5.00));
+        fo.add(new foodOrdered(2002, "Telur", 2, 4.0));
+        fo.add(new foodOrdered(2002, "Milo Ais", 2, 2.50));
         orderList.add(new orderDetails(1001, 2002, 3002, "Garden Cafe", "John", "Taman ABC", "0123456789(3)", fo));
         fo = new ArrayList<>();
-        fo.add(new foodOrdered(2003, "Mee Rebus", 2, 0.0));
-        fo.add(new foodOrdered(2003, "Teh Ais", 1, 0.0));
+        fo.add(new foodOrdered(2003, "Mee Rebus", 2, 5.0));
+        fo.add(new foodOrdered(2003, "Teh Ais", 1, 2.0));
         orderList.add(new orderDetails(1002, 2003, 3002, "Garden Cafe", "Dennis", "Taman DEF", "012-333444999", fo));
 
         int input;
@@ -378,7 +532,6 @@ public class MaintainStaff {
             System.out.println("2. Retrieve Pending Deliveries");
             System.out.println("3. Update Staff Details");
             System.out.println("4. Update Staff Status");
-            System.out.println("5. Daily Report");
             System.out.println("0. Exit");
             System.out.print("Input Selection : ");
             input = scanner.nextInt();
@@ -397,9 +550,6 @@ public class MaintainStaff {
                     break;
                 case 4:
                     updateStatus();
-                    break;
-                case 5:
-                    dailyReport();
                     break;
                 default:
                     System.out.println("Invalid Selection");
