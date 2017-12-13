@@ -117,7 +117,28 @@ public class CheckOrder {
     }
     
     public static void updateAvailability(int id) {
-
+        int select;
+         for (int i=0;i<staff.size();i++){
+        if(id==staff.get(i).getID()){
+            System.out.println("\nCurrent status:"+staff.get(i).getAvailability());
+            System.out.println("Select new status");
+            System.out.println("1.Break");
+            System.out.println("2.Available");
+            System.out.println("0.Exit");
+            select=scan.nextInt();
+            if(select ==1){
+                staff.get(i).setAvailability("On Break");
+            }else if (select==2){
+                staff.get(i).setAvailability("Available");
+            }else if (select==0){
+                break;
+            }else{
+                System.out.println("\nIncorrect selection");
+                break;
+            }
+            
+        }
+        }
     }
            
            
