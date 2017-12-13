@@ -120,25 +120,27 @@ public class MakeOrder {
     public static void summary() {
 
         totalAmount = 0.0;
-        System.out.println("-------------------------------------------------");
-        System.out.println("|               Your Order Details              |");
-        System.out.println("-------------------------------------------------");
-        System.out.println("| Food ID |     Food Name    | Quantity | Price |");
-        System.out.println("-------------------------------------------------");
+        System.out.println("---------------------------------------------------");
+        System.out.println("|               Your Order Details                |");
+        System.out.println("---------------------------------------------------");
+        System.out.println("| Food ID |     Food Name    | Quantity |  Price  |");
+        System.out.println("---------------------------------------------------");
 
         for (j = 0; j < foList.size(); j++) {
-            System.out.println("     " + foList.get(j).getFoodID() + "         " + foList.get(j).getFood() + "     " + foList.get(j).getQuantity() + "        RM " + foList.get(j).getPrice());
+            System.out.println("|    " + foList.get(j).getFoodID() + "         " + foList.get(j).getFood() + "     " + foList.get(j).getQuantity() + "        RM " +( foList.get(j).getPrice()* foList.get(j).getQuantity())+" |");
             totalAmount += (foList.get(j).getPrice()) * (foList.get(j).getQuantity());
         }
 
-        System.out.println("-------------------------------------------------");
-        System.out.printf("                                 Total: RM %.1f  \n", totalAmount);
+        System.out.println("---------------------------------------------------");
+        System.out.printf("|                                  Total:  RM %.1f |\n", totalAmount);
+        System.out.println("---------------------------------------------------");
 
         System.out.println();
           
         changeQuantity();
 
     }
+    
 
     public static void confirmOrder() {
         System.out.println("Please Confirm your order (Y/N)");
@@ -149,7 +151,27 @@ public class MakeOrder {
 
             case "Y":
                 System.out.println("Thank you for ordering from us! Please come again.");
-                System.out.println("\n");
+        
+                 totalAmount = 0.0;
+        System.out.println("---------------------------------------------------");
+        System.out.println("|               Order Confirmed                   |");
+        System.out.println("---------------------------------------------------");
+        System.out.println("| Food ID |     Food Name    | Quantity |  Price  |");
+        System.out.println("---------------------------------------------------");
+
+        for (j = 0; j < foList.size(); j++) {
+            System.out.println("|    " + foList.get(j).getFoodID() + "         " + foList.get(j).getFood() + "     " + foList.get(j).getQuantity() + "        RM " + ( foList.get(j).getPrice()* foList.get(j).getQuantity())+" |");
+            totalAmount += (foList.get(j).getPrice()) * (foList.get(j).getQuantity());
+        }
+
+        System.out.println("---------------------------------------------------");
+        System.out.printf("|                                   Total: RM %.1f |\n", totalAmount);
+        System.out.println("---------------------------------------------------");
+
+        System.out.println();
+          
+                
+                
 
                 break;
 
@@ -195,6 +217,7 @@ String change = scan.next();
         }
 
     }
+    
 
     public static void main(String[] args) {
         MakeOrder();
